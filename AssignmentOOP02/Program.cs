@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Security.Principal;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -59,25 +62,55 @@ namespace AssignmentOOP02
             //
             //          
             // Example of a read-only property that returns a calculated value
-        //   public class Rectangle
+            //   public class Rectangle
+            //{
+            //    private double width;
+            //    private double height;
+
+            //    public Rectangle(double width, double height)
+            //    {
+            //        this.width = width;
+            //        this.height = height;
+            //    }
+
+            //    public double Area
+            //    {
+            //        get { return width * height; }
+            //    }
+            //}
+
+            #endregion
+            #region Q03
+        //    a) What is this[int index] called? Explain its purpose.
+        //        This is indexer
+        //        Purpose is  allowing an object to be accessed like an array using square brackets[].
+               
+        //        b) What happens if someone writes register[10] = "Ali";?                        
+        //        it causes error IndexOutOfRangeException because index 10 does not exist.
+ 
+        //        How would you make the indexer safer ?
+        //        Add validation inside the get and set:
+        //        invalid indexes are checked before accessing the array.
+
+        //        c) Can a class have more than one indexer?       
+        //         Yes class can have multiple indexers 
+        //    as long as they have different parameter types or different parameter lists.
+        //           EX:
+        //    public string this[int index] { get; set; }
+
+        //public string this[string name]
         //{
-        //    private double width;
-        //    private double height;
-
-        //    public Rectangle(double width, double height)
+        //    get
         //    {
-        //        this.width = width;
-        //        this.height = height;
-        //    }
-
-        //    public double Area
-        //    {
-        //        get { return width * height; }
+        //        foreach (var student in names)
+        //        {
+        //            if (student == name)
+        //                return student;
+        //        }
+        //        return null;
         //    }
         //}
-
         #endregion
-
 
     }
 }
