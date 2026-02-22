@@ -2,8 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Security.Principal;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AssignmentOOP02
@@ -81,37 +84,56 @@ namespace AssignmentOOP02
 
             #endregion
             #region Q03
-        //    a) What is this[int index] called? Explain its purpose.
-        //        This is indexer
-        //        Purpose is  allowing an object to be accessed like an array using square brackets[].
-               
-        //        b) What happens if someone writes register[10] = "Ali";?                        
-        //        it causes error IndexOutOfRangeException because index 10 does not exist.
- 
-        //        How would you make the indexer safer ?
-        //        Add validation inside the get and set:
-        //        invalid indexes are checked before accessing the array.
+            //    a) What is this[int index] called? Explain its purpose.
+            //        This is indexer
+            //        Purpose is  allowing an object to be accessed like an array using square brackets[].
 
-        //        c) Can a class have more than one indexer?       
-        //         Yes class can have multiple indexers 
-        //    as long as they have different parameter types or different parameter lists.
-        //           EX:
-        //    public string this[int index] { get; set; }
+            //        b) What happens if someone writes register[10] = "Ali";?                        
+            //        it causes error IndexOutOfRangeException because index 10 does not exist.
 
-        //public string this[string name]
-        //{
-        //    get
-        //    {
-        //        foreach (var student in names)
-        //        {
-        //            if (student == name)
-        //                return student;
-        //        }
-        //        return null;
-        //    }
-        //}
-        #endregion
+            //        How would you make the indexer safer ?
+            //        Add validation inside the get and set:
+            //        invalid indexes are checked before accessing the array.
 
-    }
+            //        c) Can a class have more than one indexer?       
+            //         Yes class can have multiple indexers 
+            //    as long as they have different parameter types or different parameter lists.
+            //           EX:
+            //    public string this[int index] { get; set; }
+
+            //public string this[string name]
+            //{
+            //    get
+            //    {
+            //        foreach (var student in names)
+            //        {
+            //            if (student == name)
+            //                return student;
+            //        }
+            //        return null;
+            //    }
+            //}
+            #endregion
+            #region Q04
+//            a) What does the static keyword mean on TotalOrders?
+//                The static keyword means that TotalOrders:
+//                Belongs to the class itself, not to individual objects.
+//                There is only one shared copy of it.
+//                All instances of Order share the same variable.
+//                The same shared variable increases for every object.
+
+//                How is it different from the `Item` field?
+//      TotalOrders                                 Item
+//Static (class-level)	                        Non-static (instance-level)
+//Shared by all objects                           Each object has its own copy
+//Accessed using Order.TotalOrders	               Accessed using object reference
+
+
+//        Can a static method inside Order access the Item field directly? Why or why not?
+//     No   A static method belongs to the class, not to a specific object.
+//    But Item is an instance field, meaning it belongs to a specific object.
+//   Since a static method does not have a reference to a specific object, it cannot access instance members directly.
+            #endregion
+        }
 }
 }
