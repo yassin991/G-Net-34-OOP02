@@ -115,25 +115,93 @@ namespace AssignmentOOP02
             //}
             #endregion
             #region Q04
-//            a) What does the static keyword mean on TotalOrders?
-//                The static keyword means that TotalOrders:
-//                Belongs to the class itself, not to individual objects.
-//                There is only one shared copy of it.
-//                All instances of Order share the same variable.
-//                The same shared variable increases for every object.
+            //            a) What does the static keyword mean on TotalOrders?
+            //                The static keyword means that TotalOrders:
+            //                Belongs to the class itself, not to individual objects.
+            //                There is only one shared copy of it.
+            //                All instances of Order share the same variable.
+            //                The same shared variable increases for every object.
 
-//                How is it different from the `Item` field?
-//      TotalOrders                                 Item
-//Static (class-level)	                        Non-static (instance-level)
-//Shared by all objects                           Each object has its own copy
-//Accessed using Order.TotalOrders	               Accessed using object reference
+            //                How is it different from the `Item` field?
+            //      TotalOrders                                 Item
+            //Static (class-level)	                        Non-static (instance-level)
+            //Shared by all objects                           Each object has its own copy
+            //Accessed using Order.TotalOrders	               Accessed using object reference
 
 
-//        Can a static method inside Order access the Item field directly? Why or why not?
-//     No   A static method belongs to the class, not to a specific object.
-//    But Item is an instance field, meaning it belongs to a specific object.
-//   Since a static method does not have a reference to a specific object, it cannot access instance members directly.
+            //        Can a static method inside Order access the Item field directly? Why or why not?
+            //     No   A static method belongs to the class, not to a specific object.
+            //    But Item is an instance field, meaning it belongs to a specific object.
+            //   Since a static method does not have a reference to a specific object, it cannot access instance members directly.
+            #endregion
+            #region Practical
+            Cinema cinema = new Cinema();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"\nEnter data for Ticket {i + 1}");
+
+                Console.Write("Movie Name: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Ticket Type (0=Standard, 1=VIP, 2=IMAX): ");
+                TicketType type = (TicketType)int.Parse(Console.ReadLine());
+
+                Console.Write("Seat Row (A-Z): ");
+                char row = char.Parse(Console.ReadLine());
+
+                Console.Write("Seat Number: ");
+                int number = int.Parse(Console.ReadLine());
+
+                Console.Write("Price: ");
+                double price = double.Parse(Console.ReadLine());
+
+                SeatLocation seat = new SeatLocation(row, number);
+                Ticket ticket = new Ticket(name, type, seat, price);
+
+                cinema.AddTicket(ticket);
+            }
+
+            Console.WriteLine("\n======= All Tickets =======");
+
+            for (int i = 0; i < 3; i++)
+            {
+                Ticket t = cinema[i];
+                if (t != null)
+                {
+                    Console.WriteLine(
+                        $"Ticket #{t.TicketId} | {t.MovieName} | {t.Type} | Seat: {t.Seat} | " +
+                        $"Price: {t.Price} | After Tax: {t.PriceAfterTax}");
+                }
+            }
+
+            Console.Write("\nEnter movie name to search: ");
+            string searchName = Console.ReadLine();
+
+            Ticket found = cinema[searchName];
+
+            if (found != null)
+                Console.WriteLine($"Found: Ticket #{found.TicketId} | {found.MovieName}");
+            else
+                Console.WriteLine("Movie not found.");
+
+            Console.WriteLine($"\nTotal Tickets Sold: {Ticket.GetTotalTicketsSold()}");
+
+            Console.WriteLine("\nBooking References:");
+            Console.WriteLine(BookingHelper.GenerateBookingReference());
+            Console.WriteLine(BookingHelper.GenerateBookingReference());
+
+            double discounted = BookingHelper.CalcGroupDiscount(5, 80);
+            Console.WriteLine($"\nGroup Discount (5 tickets x 80 EGP): {discounted} EGP");
+
+
+
+
+
+
+
+
             #endregion
         }
-}
+    }
 }
